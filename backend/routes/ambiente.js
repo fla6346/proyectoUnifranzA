@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcrypt');
-const pool = require('../config/db');
+import { Router } from 'express';
+const router = Router();
+import bcrypt from 'bcrypt';
+import { query } from '../config/db.js';
 
 router.post('/api/CreateAmbiente', async (req, res) => {
   try {
-    const result = await pool.query(
+    const result = await query(
       'INSERT INTO ambiente (nombreambiente,requisto,caracteristicas,observaciones) VALUES ($1, $2, $3, $4) RETURNING *',
     );
     res.json(result.rows[0]);
@@ -17,7 +17,7 @@ router.post('/api/CreateAmbiente', async (req, res) => {
 //Read
 router.get('/api/ambiente', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM ambiente');
+    const result = await query('SELECT * FROM ambiente');
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -30,7 +30,7 @@ router.get('/api/ambiente', async (req, res) => {
 //delete 
 router.post('/api/delete', async (req, res) => {
   try {
-    const result = await pool.query(
+    const result = await query(
       'UPDATE events (habilitado) VALUES (0) RETURNING *',
     );
     res.json(result.rows[0]);
@@ -40,4 +40,4 @@ router.post('/api/delete', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

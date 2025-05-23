@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcrypt');
-const pool = require('../config/db').default;
+import { Router } from 'express';
+const router = Router();
+import bcrypt from 'bcrypt';
+import pool from '../config/db.js';
 
 
 // Create an activity
@@ -42,4 +42,4 @@ router.post('/api/delete', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

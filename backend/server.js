@@ -7,6 +7,7 @@ import eventRoutes from  './routes/events.js';
 import authRoutes from './routes/auth.js';
 import usuarios from './routes/usuarios.js';
 import chatRoutes from './routes/chat.js';
+import Eventos from './routes/eventoRoutes.js';
 //import auth from './routes/auth.js';
 //import db from './config/db.js';
 import pool from './config/db.js';
@@ -27,6 +28,7 @@ app.use('/api/events', eventRoutes);
 app.use('/api/auth',authRoutes);
 app.use('/api/users',usuarios);
 app.use('/api/message',chatRoutes);
+app.use('/api/events',Eventos);
 
 //app.use('')
 app.use((err,req,res,next)=>{
